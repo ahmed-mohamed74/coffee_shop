@@ -10,12 +10,14 @@ class MyProfile extends StatelessWidget {
     var user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       body: Center(
-        child: Container(
+        child: SizedBox(
           height: 300,
           width: double.infinity,
           child: Card(
-            shape: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-            color: spColor,
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.transparent)),
+            color: subColor,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -28,12 +30,12 @@ class MyProfile extends StatelessWidget {
                   const SizedBox(height: 40),
                   Text(
                     '${user!.displayName}',
-                    style: const TextStyle(color: Colors.white,fontSize: 20),
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     '${user.email}',
-                    style: const TextStyle(color: Colors.white,fontSize: 15),
+                    style: const TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ],
               ),

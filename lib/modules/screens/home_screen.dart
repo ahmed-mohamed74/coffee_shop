@@ -1,7 +1,6 @@
 import 'package:coffee_shop/shared/components/componenets.dart';
 import 'package:coffee_shop/shared/network/users.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubit/cubit.dart';
 
@@ -24,12 +23,13 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 8),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 22.0, vertical: 8),
               child: Text(
                 'Find the best\ncoffee for you',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: blackColor,
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
@@ -40,21 +40,26 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(12.0),
               child: TextFormField(
                 textAlign: TextAlign.left,
-                cursorColor: Colors.grey,
-                style: const TextStyle(color: Colors.white),
+                cursorColor: subColor,
+                style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   prefixIcon: const Icon(
                     Icons.search,
-                    color: Colors.grey,
+                    color: Colors.black,
                   ),
-                  labelStyle: const TextStyle(color: Colors.grey, fontSize: 13),
+                  labelStyle: TextStyle(
+                      color: subColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
                   labelText: 'Find your coffee ..',
-                  fillColor: const Color(0xFF131313),
+                  fillColor: oneTimeColor,
                   filled: true,
                   focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.transparent),
                     borderRadius: BorderRadius.circular(23.0),
                   ),
                   enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.transparent),
                     borderRadius: BorderRadius.circular(23.0),
                   ),
                 ),
@@ -67,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
+            const SizedBox(height: 10),
             SizedBox(
               height: 50,
               child: ListView.builder(
@@ -85,11 +91,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        margin: const EdgeInsets.only(left: 5),
+                        margin: const EdgeInsets.only(left: 12),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 5),
+                            horizontal: 22, vertical: 10),
                         decoration: BoxDecoration(
-                          color: Colors.transparent,
+                          color: index == cubit.categoryIndex
+                              ? subColor
+                              : oneTimeColor,
                           borderRadius: BorderRadius.circular(40),
                         ),
                         child: Text(
@@ -100,8 +108,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   : 'Hot Teas',
                           style: TextStyle(
                             color: index == cubit.categoryIndex
-                                ? spColor
-                                : Colors.grey.withOpacity(0.7),
+                                ? Colors.white
+                                : blackColor,
                             fontWeight: index == cubit.categoryIndex
                                 ? FontWeight.w700
                                 : FontWeight.w500,
@@ -112,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       index == cubit.categoryIndex
                           ? CircleAvatar(
                               radius: 4,
-                              backgroundColor: spColor,
+                              backgroundColor: subColor,
                             )
                           : Container(),
                     ],
@@ -121,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Container(
-              color: Colors.black,
+              color: mainColor,
               margin: const EdgeInsets.all(15.0),
               height: 270,
               child: ListView.builder(
@@ -144,12 +152,12 @@ class _HomeScreenState extends State<HomeScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 18.0),
+                Padding(
+                  padding: const EdgeInsets.only(left: 18.0),
                   child: Text(
                     'Special for you',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: blackColor,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),

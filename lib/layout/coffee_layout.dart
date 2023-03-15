@@ -5,6 +5,7 @@ import 'package:coffee_shop/modules/login_page.dart';
 import 'package:coffee_shop/modules/screens/cart_screen.dart';
 import 'package:coffee_shop/shared/components/componenets.dart';
 import 'package:coffee_shop/shared/network/users.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,12 +26,13 @@ class CoffeeLayout extends StatelessWidget {
           return SafeArea(
             child: ZoomDrawer(
               menuScreen: Scaffold(
-                backgroundColor: Colors.white,
+                backgroundColor: mainColor,
                 body: ListView(
                   padding: EdgeInsets.zero,
                   children: [
                     UserAccountsDrawerHeader(
-                      decoration: BoxDecoration(color: spColor),
+                      decoration: BoxDecoration(color: subColor),
+                      //---=>subColor------
                       accountName: Text(
                         "${user!.displayName}",
                         style: const TextStyle(
@@ -57,7 +59,7 @@ class CoffeeLayout extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CoffeeLayout(),
+                              builder: (context) => const CoffeeLayout(),
                             ));
                         cubit.changeCurrentIndex(0);
                       },
@@ -93,16 +95,21 @@ class CoffeeLayout extends StatelessWidget {
               ),
               mainScreen: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: Colors.black,
+                  backgroundColor: mainColor,
                   elevation: 0,
                   leading: Builder(
                     builder: (BuildContext context) {
                       return IconButton(
-                        icon: const Icon(
-                          Icons.menu_open,
-                          color: Colors.grey,
-                          size: 35, // Changing Drawer Icon Size
+                        icon: Image.asset(
+                          "assets/images/new/manu.png",
+                          height: 50,
+                          width: 70,
                         ),
+                        // const Icon(
+                        //   Icons.menu_outlined,
+                        //   color: Colors.black,
+                        //   size: 35, // Changing Drawer Icon Size
+                        // ),
                         onPressed: () {
                           // Scaffold.of(context).openDrawer();
                           ZoomDrawer.of(context)!.toggle();
@@ -114,9 +121,9 @@ class CoffeeLayout extends StatelessWidget {
                   ),
                   actions: [
                     OpenContainer(
-                      openColor: Colors.black,
-                      closedColor: Colors.black,
-                      middleColor: Colors.black,
+                      openColor: mainColor,
+                      closedColor: mainColor,
+                      middleColor: mainColor,
                       transitionDuration: const Duration(milliseconds: 1500),
                       // transitionType: transitionType,
                       closedBuilder:
@@ -124,10 +131,10 @@ class CoffeeLayout extends StatelessWidget {
                               InkWell(
                         onTap: openContainer,
                         child: const Padding(
-                          padding: EdgeInsets.all(12.0),
+                          padding: EdgeInsets.all(10.0),
                           child: Icon(
                             Icons.shopping_basket,
-                            color: Colors.grey,
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -138,17 +145,19 @@ class CoffeeLayout extends StatelessWidget {
                   ],
                 ),
                 body: cubit.screens[cubit.currentIndex],
-                bottomNavigationBar: BottomNavigationBar(
-                  elevation: 3,
-                  showSelectedLabels: false,
-                  showUnselectedLabels: false,
-                  selectedFontSize: 25,
-                  selectedIconTheme: const IconThemeData(size: 25),
-                  unselectedIconTheme: const IconThemeData(size: 20),
-                  selectedItemColor: spColor,
-                  backgroundColor: Colors.black,
-                  unselectedItemColor: Colors.grey,
-                  currentIndex: cubit.currentIndex,
+                bottomNavigationBar: CurvedNavigationBar(
+                  // elevation: 3,
+                  // showSelectedLabels: false,
+                  // showUnselectedLabels: false,
+                  // selectedFontSize: 25,
+                  // selectedIconTheme: const IconThemeData(size: 25),
+                  // unselectedIconTheme: const IconThemeData(size: 20),
+                  // selectedItemColor: subColor,
+                  // unselectedItemColor: Colors.grey,
+                  color: oneTimeColor,
+                  buttonBackgroundColor: blackColor,
+                  backgroundColor: Colors.transparent,
+                  index: cubit.currentIndex,
                   onTap: (index) {
                     cubit.changeCurrentIndex(index);
                   },

@@ -12,10 +12,10 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
   int currentIndex = 0;
-  List<BottomNavigationBarItem> bottomItems = const [
-    BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home_filled)),
-    BottomNavigationBarItem(label: 'My Profile', icon: Icon(Icons.person)),
-    BottomNavigationBarItem(label: 'Favourite', icon: Icon(Icons.favorite)),
+  List<Widget> bottomItems = const [
+    Icon(Icons.home_filled),
+    Icon(Icons.person),
+    Icon(Icons.favorite),
   ];
   List<Widget> screens = [
     HomeScreen(),

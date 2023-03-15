@@ -9,7 +9,8 @@ List<Map> myUsers = [
 ];
 Color spColor = const Color.fromRGBO(208, 122, 68, 1);
 Color mainColor = const Color.fromRGBO(235, 219, 204, 1);
-Color subColor = const Color.fromRGBO(203, 155, 88, 1);
+Color subColor = const Color.fromRGBO(197, 148, 80, 1);
+Color oneTimeColor = const Color.fromRGBO(218, 202, 189, 1);
 Color blackColor = const Color.fromRGBO(34, 35, 37, 1);
 
 List drinks = [

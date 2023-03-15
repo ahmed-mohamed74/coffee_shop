@@ -24,10 +24,11 @@ class RegisterScreen extends StatelessWidget {
       create: (context) => PaymentCubit()..getAuthToken(),
       child: Scaffold(
           appBar: AppBar(
-            backgroundColor: const Color.fromRGBO(208, 122, 68, 1),
+            backgroundColor: mainColor,
+            elevation: 0,
             title: const Text(
               'Payment Integration',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             ),
           ),
           body: BlocConsumer<PaymentCubit, PaymentCubitState>(
@@ -136,24 +137,23 @@ class RegisterScreen extends StatelessWidget {
                                 child: Text.rich(
                                   TextSpan(
                                       text: 'Price: ',
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                           color:
-                                              Color.fromRGBO(208, 122, 68, 1),
+                                              subColor,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 24),
                                       children: <TextSpan>[
                                         TextSpan(
                                           text: '$price ',
                                           style: const TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontWeight: FontWeight.w400,
                                               fontSize: 20),
                                         ),
-                                        const TextSpan(
+                                        TextSpan(
                                           text: 'piaster',
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
-                                                  208, 122, 68, 1),
+                                              color: subColor,
                                               fontWeight: FontWeight.w400,
                                               fontSize: 20),
                                         )
@@ -163,13 +163,13 @@ class RegisterScreen extends StatelessWidget {
                               const SizedBox(height: 15),
                               DefaultButton(
                                   backgroundColor:
-                                      const Color.fromRGBO(208, 122, 68, 1),
+                                      Colors.black,
                                   radius: 10,
-                                  buttonWidget: const Text(
+                                  buttonWidget: Text(
                                     'Register',
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.0,
+                                      color: subColor,
+                                      fontSize: 20.0,
                                       letterSpacing: 1.7,
                                     ),
                                   ),

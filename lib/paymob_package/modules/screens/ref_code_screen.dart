@@ -1,5 +1,8 @@
 import 'package:coffee_shop/paymob_package/core/network/constant.dart';
+import 'package:coffee_shop/shared/network/users.dart';
 import 'package:flutter/material.dart';
+
+import '../../../layout/coffee_layout.dart';
 
 class RefCodeScreen extends StatelessWidget {
   const RefCodeScreen({Key? key}) : super(key: key);
@@ -8,12 +11,19 @@ class RefCodeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(208, 122, 68, 1),
+        backgroundColor: mainColor,
+        elevation: 0,
         title: const Text('Reference Code'),
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CoffeeLayout(),
+                  ));
+            },
             icon: const Icon(Icons.exit_to_app),
           )
         ],
@@ -26,9 +36,9 @@ class RefCodeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
-                'You should go to our coffee to get your drink',
+                'You should go to our coffee to get your drink..',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
                 ),
@@ -37,7 +47,7 @@ class RefCodeScreen extends StatelessWidget {
               const Text(
                 'This is the reference code :',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 18,
                 ),
               ),
@@ -46,17 +56,17 @@ class RefCodeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(18.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: const Color.fromRGBO(208, 122, 68, 1),
+                  color: Colors.black,
                 ),
                 child: Center(
                     child: Text(
                   ApiContest.refCode.isEmpty
                       ? 'nothing...'
                       : ApiContest.refCode,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 40.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: subColor,
                   ),
                 )),
               ),
