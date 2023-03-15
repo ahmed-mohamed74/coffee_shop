@@ -54,7 +54,8 @@ class DrinkScreen extends StatelessWidget {
                                   child: BlurryContainer(
                                     blur: 4,
                                     borderRadius: BorderRadius.circular(20),
-                                    color: Colors.black.withOpacity(0.1),
+                                    color: const Color.fromRGBO(
+                                        235, 219, 204, 0.1),
                                     elevation: 2,
                                     child: Row(
                                       mainAxisAlignment:
@@ -90,7 +91,7 @@ class DrinkScreen extends StatelessWidget {
                                                 children: [
                                                   Icon(
                                                     Icons.star,
-                                                    color: spColor,
+                                                    color: subColor,
                                                   ),
                                                   Text(
                                                     '${drinks[categoryIndex][index].rate}',
@@ -113,7 +114,7 @@ class DrinkScreen extends StatelessWidget {
                                                         BorderRadius.circular(
                                                             10),
                                                     child: Material(
-                                                      color: Colors.black,
+                                                      color: blackColor,
                                                       child: InkWell(
                                                         splashColor:
                                                             Colors.grey,
@@ -126,14 +127,14 @@ class DrinkScreen extends StatelessWidget {
                                                             Icon(
                                                               Icons.coffee,
                                                               size: 15,
-                                                              color: spColor,
+                                                              color: mainColor,
                                                             ),
                                                             // <-- Icon
-                                                            const Text(
+                                                            Text(
                                                               "Coffee",
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .white,
+                                                                  color:
+                                                                      mainColor,
                                                                   fontSize: 8,
                                                                   fontWeight:
                                                                       FontWeight
@@ -154,7 +155,7 @@ class DrinkScreen extends StatelessWidget {
                                                         BorderRadius.circular(
                                                             10),
                                                     child: Material(
-                                                      color: Colors.black,
+                                                      color: blackColor,
                                                       child: InkWell(
                                                         splashColor:
                                                             Colors.grey,
@@ -167,14 +168,14 @@ class DrinkScreen extends StatelessWidget {
                                                             Icon(
                                                               Icons.water_drop,
                                                               size: 15,
-                                                              color: spColor,
+                                                              color: mainColor,
                                                             ),
                                                             // <-- Icon
-                                                            const Text(
+                                                            Text(
                                                               "Milk",
                                                               style: TextStyle(
-                                                                  color: Colors
-                                                                      .white,
+                                                                  color:
+                                                                      mainColor,
                                                                   fontSize: 8,
                                                                   fontWeight:
                                                                       FontWeight
@@ -196,15 +197,15 @@ class DrinkScreen extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 child: Material(
-                                                  color: Colors.black,
+                                                  color: blackColor,
                                                   child: InkWell(
-                                                    splashColor: Colors.grey,
+                                                    splashColor: subColor,
                                                     onTap: () {},
-                                                    child: const Center(
+                                                    child: Center(
                                                       child: Text(
                                                         "Medium Roasted",
                                                         style: TextStyle(
-                                                            color: Colors.white,
+                                                            color: mainColor,
                                                             fontSize: 10,
                                                             fontWeight:
                                                                 FontWeight
@@ -223,7 +224,7 @@ class DrinkScreen extends StatelessWidget {
                               Positioned(
                                   top: 20,
                                   right: 20,
-                                  child: Container(
+                                  child: SizedBox(
                                     width: 40,
                                     height: 40,
                                     child: IconButton(
@@ -296,25 +297,25 @@ class DrinkScreen extends StatelessWidget {
                             ],
                           ),
                           ListTile(
-                            title: const Text(
+                            title: Text(
                               'Ingredients',
                               style: TextStyle(
-                                  color: Colors.white70,
+                                  color: blackColor,
                                   fontWeight: FontWeight.w500),
                             ),
                             subtitle: Container(
                               decoration: BoxDecoration(
-                                color: Colors.black,
-                                border: Border.all(color: Colors.grey),
+                                color: blackColor,
+                                border: Border.all(color: Colors.transparent),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               margin: const EdgeInsets.all(10),
                               padding: const EdgeInsets.all(10),
-                              height: 110,
+                              height: 120,
                               width: 300,
                               child: ListView.builder(
                                 itemBuilder: (ctx, i) => Card(
-                                  color: spColor,
+                                  color: subColor,
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 10),
@@ -330,10 +331,10 @@ class DrinkScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              Text(
                                 'Size',
                                 style: TextStyle(
-                                    color: Colors.white70,
+                                    color: blackColor,
                                     fontWeight: FontWeight.w500),
                               ),
                               const SizedBox(height: 5),
@@ -344,12 +345,12 @@ class DrinkScreen extends StatelessWidget {
                                 },
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(8)),
-                                selectedBorderColor: spColor,
-                                selectedColor: spColor,
+                                selectedBorderColor: subColor,
+                                selectedColor: subColor,
                                 textStyle: const TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 15),
                                 fillColor: Colors.black,
-                                color: Colors.white70,
+                                color: blackColor,
                                 constraints: const BoxConstraints(
                                   minHeight: 35.0,
                                   minWidth: 100.0,
@@ -374,29 +375,28 @@ class DrinkScreen extends StatelessWidget {
                               padding: const EdgeInsets.all(20),
                               child: Column(
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Price',
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w400,
-                                      color: Colors.grey,
+                                      color: blackColor,
                                     ),
                                   ),
                                   const SizedBox(height: 5),
                                   Text.rich(
                                     TextSpan(
                                         text: '\$ ',
-                                        style: const TextStyle(
-                                            color:
-                                                Color.fromRGBO(208, 122, 68, 1),
+                                        style: TextStyle(
+                                            color: subColor,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 24),
                                         children: <TextSpan>[
                                           TextSpan(
                                             text:
                                                 '${drinks[categoryIndex][index].price}',
-                                            style: const TextStyle(
-                                                color: Colors.white,
+                                            style: TextStyle(
+                                                color: blackColor,
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 20),
                                           )
@@ -410,7 +410,7 @@ class DrinkScreen extends StatelessWidget {
                               height: 90,
                               width: 220,
                               child: MaterialButton(
-                                splashColor: Colors.deepOrange,
+                                splashColor: subColor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -425,11 +425,11 @@ class DrinkScreen extends StatelessWidget {
                                   });
                                   navigateTo(context, const CartScreen());
                                 },
-                                color: spColor,
-                                child: const Text(
+                                color: blackColor,
+                                child: Text(
                                   'Add to Cart',
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: subColor,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 18),
                                 ),

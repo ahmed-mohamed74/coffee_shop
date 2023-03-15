@@ -1,4 +1,5 @@
 import 'package:coffee_shop/paymob_package/core/network/dio_helper.dart';
+import 'package:coffee_shop/shared/network/users.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
           primarySwatch: Colors.orange,
-          primaryColor: Colors.black,
-          scaffoldBackgroundColor: Colors.black,
+          primaryColor: mainColor,
+          scaffoldBackgroundColor: mainColor,
           appBarTheme: const AppBarTheme(
             systemOverlayStyle: SystemUiOverlayStyle(
               statusBarColor: Colors.transparent,

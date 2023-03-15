@@ -27,20 +27,25 @@ class defaultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const transitionType =ContainerTransitionType.fadeThrough;
+    const transitionType = ContainerTransitionType.fadeThrough;
     var cubit = AppCubit.get(context);
     return OpenContainer(
-      openColor: Colors.black,
-      closedColor: Colors.black,
-      middleColor: Colors.black,
+      closedShape: RoundedRectangleBorder(
+        side: const BorderSide(color: Colors.transparent),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      openColor: mainColor,
+      closedColor: mainColor,
+      middleColor: mainColor,
       transitionDuration: const Duration(milliseconds: 1500),
       transitionType: transitionType,
       closedBuilder: (BuildContext context, VoidCallback openContainer) =>
           InkWell(
               onTap: openContainer,
               child: Card(
-                elevation: 1,
+                elevation: 0,
                 shape: RoundedRectangleBorder(
+                  side: const BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Container(
@@ -121,8 +126,8 @@ class defaultCard extends StatelessWidget {
                             Text.rich(
                               TextSpan(
                                   text: '\$ ',
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(208, 122, 68, 1),
+                                  style: TextStyle(
+                                      color: subColor,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16),
                                   children: <TextSpan>[
@@ -143,7 +148,7 @@ class defaultCard extends StatelessWidget {
                               child: ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor:
-                                      MaterialStateProperty.all(spColor),
+                                      MaterialStateProperty.all(subColor),
                                   padding: MaterialStateProperty.all(
                                       EdgeInsets.zero),
                                   shape: MaterialStateProperty.all(
@@ -190,10 +195,10 @@ class defaultCard extends StatelessWidget {
                                         ),
                                       )).show();
                                 },
-                                child: const Icon(
+                                child: Icon(
                                   Icons.add,
                                   size: 16,
-                                  color: Colors.white,
+                                  color: blackColor,
                                 ),
                               ),
                             ),
@@ -248,7 +253,7 @@ class SpecialCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.5),
+                        color: Colors.black.withOpacity(0.3),
                         spreadRadius: 2,
                         blurRadius: 12,
                         offset:
@@ -271,12 +276,15 @@ class SpecialCard extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: 170,
-                      child: Text(
-                        '${drinks[randomCategory][randomDrink].drinkName} You\nMust Try It !',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 19,
-                          fontWeight: FontWeight.w500,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          '${drinks[randomCategory][randomDrink].drinkName} You\nMust Try It !',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 19,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
@@ -303,8 +311,8 @@ class SpecialCard extends StatelessWidget {
                           Text.rich(
                             TextSpan(
                                 text: '\$ ',
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(208, 122, 68, 1),
+                                style: TextStyle(
+                                    color: subColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18),
                                 children: <TextSpan>[
@@ -320,8 +328,8 @@ class SpecialCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 40),
                           Icon(
-                            Icons.tag_faces_outlined,
-                            color: spColor,
+                            Icons.tag_faces_sharp,
+                            color: subColor,
                             size: 40,
                           ),
                         ],

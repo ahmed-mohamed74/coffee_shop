@@ -20,7 +20,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
         body: Center(
           child: Text(
             'Favourite screen',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: subColor),
           ),
         ),
       );
@@ -42,7 +42,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                       child: Text(
                         'My Favourites',
                         style: TextStyle(
-                            color: spColor,
+                            color: subColor,
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
                             letterSpacing: 1),
@@ -84,7 +84,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                             boxShadow: [
                                               BoxShadow(
                                                 color: Colors.black
-                                                    .withOpacity(0.5),
+                                                    .withOpacity(0.4),
                                                 spreadRadius: 2,
                                                 blurRadius: 12,
                                                 offset: const Offset(0,
@@ -143,13 +143,8 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                         child: Text.rich(
                                                           TextSpan(
                                                               text: '\$ ',
-                                                              style: const TextStyle(
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          208,
-                                                                          122,
-                                                                          68,
-                                                                          1),
+                                                              style: TextStyle(
+                                                                  color: subColor,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
@@ -179,7 +174,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                   padding:
                                                       const EdgeInsets.all(0.0),
                                                   child: IconButton(
-                                                    color: spColor,
+                                                    color: subColor,
                                                     onPressed: () {
                                                       setState(() {
                                                         favourites
@@ -221,7 +216,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                         },
                         separatorBuilder: (context, index) => Divider(
                           height: 5,
-                          color: spColor.withOpacity(0.5),
+                          color: subColor.withOpacity(0.5),
                         ),
                         itemCount: favourites.length,
                       ),

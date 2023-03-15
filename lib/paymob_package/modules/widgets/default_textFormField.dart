@@ -1,3 +1,4 @@
+import 'package:coffee_shop/shared/network/users.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,17 +23,18 @@ class DefaultTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.black),
       controller: controller,
       keyboardType: type,
       obscureText: isPassword,
       validator: validate,
+      cursorColor: subColor,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: const TextStyle(color: Colors.grey),
+        hintStyle: TextStyle(color: subColor),
         prefixIcon: Icon(
           prefix,
-          color: const Color.fromRGBO(208, 122, 68, 1),
+          color: Colors.black,
         ),
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),

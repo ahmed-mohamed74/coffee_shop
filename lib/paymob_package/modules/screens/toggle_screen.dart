@@ -3,6 +3,7 @@ import 'package:coffee_shop/paymob_package/controller/cubit/payment_cubit_state.
 import 'package:coffee_shop/paymob_package/core/network/constant.dart';
 import 'package:coffee_shop/paymob_package/modules/screens/ref_code_screen.dart';
 import 'package:coffee_shop/paymob_package/modules/screens/visa_screen.dart';
+import 'package:coffee_shop/shared/network/users.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,7 +17,8 @@ class ToggleScreen extends StatelessWidget {
       create: (context) => PaymentCubit(),
       child: Scaffold(
           appBar: AppBar(
-            backgroundColor: const Color.fromRGBO(208, 122, 68, 1),
+            backgroundColor: mainColor,
+            elevation: 0,
             title: const Text('Toggle Screen'),
             centerTitle: true,
           ),
@@ -47,7 +49,7 @@ class ToggleScreen extends StatelessWidget {
                             color: Colors.white.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(15.0),
                             border: Border.all(
-                                color: const Color.fromRGBO(208, 122, 68, 1),
+                                color: subColor,
                                 width: 2.0),
                           ),
                           child: Image.network(AppImages.refCodeImage),
@@ -70,7 +72,7 @@ class ToggleScreen extends StatelessWidget {
                             color: Colors.white.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(15.0),
                             border: Border.all(
-                                color: const Color.fromRGBO(208, 122, 68, 1),
+                                color: subColor,
                                 width: 2.0),
                           ),
                           child: Image.network(AppImages.visaImage),

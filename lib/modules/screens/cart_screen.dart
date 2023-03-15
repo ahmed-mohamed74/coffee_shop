@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:coffee_shop/shared/network/users.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,8 +20,9 @@ class _CartScreenState extends State<CartScreen> {
     if (cart.isEmpty) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.grey,
+          backgroundColor: mainColor,
+          foregroundColor: Colors.black,
+          elevation: 0,
         ),
         body: SafeArea(
           child: Column(
@@ -31,18 +33,31 @@ class _CartScreenState extends State<CartScreen> {
                 child: Text(
                   'My Cart',
                   style: TextStyle(
-                      color: spColor,
+                      color: subColor,
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 1),
                 ),
               ),
-              const Flexible(
+              Flexible(
                 flex: 5,
                 child: Center(
-                  child: Text(
-                    'Your Cart is Empty!!',
-                    style: TextStyle(color: Colors.white),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/new/empty-cart.png',
+                        width: 150,
+                        height: 150,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Your Cart is Empty!!',
+                          style: TextStyle(color: subColor,fontSize: 20),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -64,23 +79,22 @@ class _CartScreenState extends State<CartScreen> {
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
-                                    color: Colors.grey,
+                                    color: blackColor,
                                   ),
                                 ),
                                 SizedBox(height: 5),
                                 Text.rich(
                                   TextSpan(
                                       text: '\$ ',
-                                      style: const TextStyle(
-                                          color:
-                                              Color.fromRGBO(208, 122, 68, 1),
+                                      style: TextStyle(
+                                          color: subColor,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 24),
                                       children: <TextSpan>[
                                         TextSpan(
                                           text: '0',
-                                          style: const TextStyle(
-                                              color: Colors.white,
+                                          style: TextStyle(
+                                              color: blackColor,
                                               fontWeight: FontWeight.w400,
                                               fontSize: 20),
                                         )
@@ -101,12 +115,39 @@ class _CartScreenState extends State<CartScreen> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              onPressed: () {},
-                              color: spColor,
+                              onPressed: () {
+                                AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.infoReverse,
+                                    animType: AnimType.rightSlide,
+                                    title: 'Warning!!',
+                                    body: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          const Text(
+                                            'The cart is empty...',
+                                          ),
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text(
+                                                'okay',
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              )),
+                                        ],
+                                      ),
+                                    )).show();
+                              },
+                              color: blackColor,
                               child: Text(
                                 'Buy Now',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: subColor,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 18),
                               ),
@@ -129,8 +170,9 @@ class _CartScreenState extends State<CartScreen> {
             var cubit = AppCubit.get(context);
             return Scaffold(
               appBar: AppBar(
-                backgroundColor: Colors.black,
-                foregroundColor: Colors.grey,
+                backgroundColor: mainColor,
+                foregroundColor: blackColor,
+                elevation: 0,
               ),
               body: SafeArea(
                 child: Column(
@@ -142,7 +184,7 @@ class _CartScreenState extends State<CartScreen> {
                       child: Text(
                         'My Cart',
                         style: TextStyle(
-                            color: spColor,
+                            color: subColor,
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
                             letterSpacing: 1),
@@ -184,7 +226,7 @@ class _CartScreenState extends State<CartScreen> {
                                             boxShadow: [
                                               BoxShadow(
                                                 color: Colors.black
-                                                    .withOpacity(0.5),
+                                                    .withOpacity(0.4),
                                                 spreadRadius: 2,
                                                 blurRadius: 12,
                                                 offset: const Offset(0,
@@ -243,13 +285,9 @@ class _CartScreenState extends State<CartScreen> {
                                                         child: Text.rich(
                                                           TextSpan(
                                                               text: '\$ ',
-                                                              style: const TextStyle(
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          208,
-                                                                          122,
-                                                                          68,
-                                                                          1),
+                                                              style: TextStyle(
+                                                                  color:
+                                                                      subColor,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
@@ -279,7 +317,7 @@ class _CartScreenState extends State<CartScreen> {
                                                   padding:
                                                       const EdgeInsets.all(0.0),
                                                   child: IconButton(
-                                                    color: spColor,
+                                                    color: subColor,
                                                     onPressed: () {
                                                       setState(() {
                                                         cart.removeAt(index);
@@ -373,7 +411,7 @@ class _CartScreenState extends State<CartScreen> {
                         },
                         separatorBuilder: (context, index) => Divider(
                           height: 5,
-                          color: spColor.withOpacity(0.5),
+                          color: subColor.withOpacity(0.5),
                         ),
                         itemCount: cart.length,
                       ),
@@ -395,25 +433,24 @@ class _CartScreenState extends State<CartScreen> {
                                         'Total',
                                         style: TextStyle(
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.grey,
+                                          fontWeight: FontWeight.w500,
+                                          color: blackColor,
                                         ),
                                       ),
                                       SizedBox(height: 5),
                                       Text.rich(
                                         TextSpan(
                                             text: '\$ ',
-                                            style: const TextStyle(
-                                                color: Color.fromRGBO(
-                                                    208, 122, 68, 1),
+                                            style: TextStyle(
+                                                color: subColor,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 24),
                                             children: <TextSpan>[
                                               TextSpan(
                                                 text: cubit.productCounter
                                                     .toStringAsFixed(2),
-                                                style: const TextStyle(
-                                                    color: Colors.white,
+                                                style: TextStyle(
+                                                    color: blackColor,
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 20),
                                               )
@@ -430,7 +467,7 @@ class _CartScreenState extends State<CartScreen> {
                                   height: 90,
                                   width: 220,
                                   child: MaterialButton(
-                                    splashColor: Colors.deepOrange,
+                                    splashColor: blackColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
@@ -447,11 +484,11 @@ class _CartScreenState extends State<CartScreen> {
                                             ),
                                           ));
                                     },
-                                    color: spColor,
+                                    color: blackColor,
                                     child: Text(
                                       'Buy Now',
                                       style: TextStyle(
-                                          color: Colors.white,
+                                          color: subColor,
                                           fontWeight: FontWeight.w500,
                                           fontSize: 18),
                                     ),
