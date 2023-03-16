@@ -3,8 +3,11 @@ import 'dart:math';
 import 'package:animations/animations.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../cubit/cubit.dart';
+import '../../modules/screens/cart_screen.dart';
 import '../../modules/screens/drink_screen.dart';
 import '../network/users.dart';
 
@@ -344,4 +347,72 @@ class SpecialCard extends StatelessWidget {
       ),
     );
   }
+}
+
+PreferredSizeWidget? buildAppBar() {
+  return AppBar(
+    backgroundColor: mainColor,
+    title: Text.rich(
+      TextSpan(
+          text: 'Coffee',
+          style: GoogleFonts.playfairDisplay(
+            textStyle: TextStyle(
+                color: blackColor, fontWeight: FontWeight.bold, fontSize: 22),
+          ),
+          children: <TextSpan>[
+            TextSpan(
+              text: 'house',
+              style: TextStyle(
+                  color: subColor, fontWeight: FontWeight.w300, fontSize: 22),
+            )
+          ]),
+    ),
+    centerTitle: true,
+    elevation: 0,
+    leading: Builder(
+      builder: (BuildContext context) {
+        return IconButton(
+          icon: Image.asset(
+            "assets/images/new/manu.png",
+            height: 50,
+            width: 70,
+          ),
+// const Icon(
+//   Icons.menu_outlined,
+//   color: Colors.black,
+//   size: 35, // Changing Drawer Icon Size
+// ),
+          onPressed: () {
+// Scaffold.of(context).openDrawer();
+            ZoomDrawer.of(context)!.toggle();
+          },
+// tooltip: MaterialLocalizations.of(context)
+//     .openAppDrawerTooltip,
+        );
+      },
+    ),
+    actions: [
+      OpenContainer(
+        openColor: mainColor,
+        closedColor: mainColor,
+        middleColor: mainColor,
+        transitionDuration: const Duration(milliseconds: 1500),
+// transitionType: transitionType,
+        closedBuilder: (BuildContext context, VoidCallback openContainer) =>
+            InkWell(
+          onTap: openContainer,
+          child: const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Icon(
+              Icons.shopping_basket,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        openBuilder: (BuildContext context,
+                void Function({Object? returnValue}) action) =>
+            const CartScreen(),
+      ),
+    ],
+  );
 }

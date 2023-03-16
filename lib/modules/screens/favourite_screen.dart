@@ -17,11 +17,77 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   Widget build(BuildContext context) {
     if (favourites.isEmpty) {
       return Scaffold(
-        body: Center(
-          child: Text(
-            'Favourite screen',
-            style: TextStyle(color: subColor),
-          ),
+        backgroundColor: subColor,
+        body: Stack(
+          children: [
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      mainColor.withOpacity(1),
+                      mainColor.withOpacity(0.7),
+                      mainColor.withOpacity(1),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 10,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Favourite Screen',
+                          style: TextStyle(
+                            fontSize: 28.0,
+                            fontWeight: FontWeight.bold,
+                            color: subColor,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Icon(
+                          Icons.favorite,
+                          color: mainColor,
+                          size: 60.0,
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Text(
+                          'Your favourite screen is empty!',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: subColor.withOpacity(0.7),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       );
     } else {
@@ -144,7 +210,8 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                           TextSpan(
                                                               text: '\$ ',
                                                               style: TextStyle(
-                                                                  color: subColor,
+                                                                  color:
+                                                                      subColor,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,

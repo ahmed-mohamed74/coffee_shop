@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:coffee_shop/layout/coffee_layout.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../shared/network/users.dart';
@@ -35,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
           decoration: const BoxDecoration(
             image: DecorationImage(
               // image: AssetImage('assets/images/appbar1.jpg'),
-              image: AssetImage('assets/images/new/login_image.jpg'),
+              image: AssetImage('assets/images/new/on_board1.jpg'),
               // => https://i.pinimg.com/564x/61/3d/c9/613dc915419a18f33c0dddd5ac73140a.jpg
               fit: BoxFit.cover,
             ),
@@ -53,17 +54,21 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text.rich(
                     TextSpan(
                         text: _isLogin ? 'Welcome ' : 'Register ',
-                        style: TextStyle(
-                            color: subColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 26),
+                        style: GoogleFonts.playfairDisplay(
+                          textStyle: TextStyle(
+                              color: subColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 26),
+                        ),
                         children: <TextSpan>[
                           TextSpan(
                             text: _isLogin ? 'back!' : 'now!!',
-                            style: TextStyle(
-                                color: subColor,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 24),
+                            style: GoogleFonts.playfairDisplay(
+                              textStyle: TextStyle(
+                                  color: subColor,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 24),
+                            ),
                           )
                         ]),
                   ),
@@ -97,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                     autocorrect: false,
                     enableSuggestions: true,
                     textCapitalization: TextCapitalization.none,
-                    key: ValueKey('email'),
+                    key: const ValueKey('email'),
                     validator: (val) {
                       if (val == null || val.isEmpty || !val.contains('@')) {
                         return "please enter a valid address";
@@ -144,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                       autocorrect: true,
                       enableSuggestions: true,
                       textCapitalization: TextCapitalization.words,
-                      key: ValueKey('username'),
+                      key: const ValueKey('username'),
                       validator: (val) {
                         if (val == null || val.isEmpty || val.length < 4) {
                           return "Please enter at least 4 characters";
@@ -162,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    key: ValueKey('password'),
+                    key: const ValueKey('password'),
                     cursorColor: subColor,
                     style: TextStyle(color: blackColor),
                     decoration: InputDecoration(
@@ -241,10 +246,10 @@ class _LoginPageState extends State<LoginPage> {
                                 subColor,
                               ),
                               fixedSize: MaterialStateProperty.all(
-                                Size(160, 70),
+                                const Size(160, 70),
                               ),
                               shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
+                                const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(50),
                                   ),
@@ -295,8 +300,8 @@ class _LoginPageState extends State<LoginPage> {
               dialogType: DialogType.info,
               animType: AnimType.rightSlide,
               title: 'Error',
-              body: Padding(
-                padding: const EdgeInsets.all(8.0),
+              body: const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text('The password provided is too weak.'),
               ))
             ..show();
@@ -307,8 +312,8 @@ class _LoginPageState extends State<LoginPage> {
               dialogType: DialogType.info,
               animType: AnimType.rightSlide,
               title: 'Error',
-              body: Padding(
-                padding: const EdgeInsets.all(8.0),
+              body: const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text('Email already in use'),
               ))
             ..show();
@@ -321,52 +326,57 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   login() async {
-    // for (int i = 0; i < myUsers.length; i++) {
-    //   if (emailController.text.trim() == myUsers[i]['email'] &&
-    //       passwordController.text.trim() == myUsers[i]['password']) {
-    //     SharedPreferences prefs = await SharedPreferences.getInstance();
-    //     prefs.setBool('loggedIn', true);
-    //     Navigator.of(context).pushReplacement(MaterialPageRoute(
-    //       builder: (c) {
-    //         return CoffeeLayout();
-    //       },
-    //     ));
-    //     verify = true;
-    //     break;
-    //   }
-    // }
-    try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      // SharedPreferences prefs = await SharedPreferences.getInstance();
-      // prefs.setBool('loggedIn', true);
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (c) {
-          return CoffeeLayout();
-        },
-      ));
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('not ok');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text("User not found"),
-          backgroundColor: Theme.of(context).errorColor.withOpacity(0.5),
+    if (_formKey.currentState!.validate()) {
+      // for (int i = 0; i < myUsers.length; i++) {
+      //   if (emailController.text.trim() == myUsers[i]['email'] &&
+      //       passwordController.text.trim() == myUsers[i]['password']) {
+      //     SharedPreferences prefs = await SharedPreferences.getInstance();
+      //     prefs.setBool('loggedIn', true);
+      //     Navigator.of(context).pushReplacement(MaterialPageRoute(
+      //       builder: (c) {
+      //         return CoffeeLayout();
+      //       },
+      //     ));
+      //     verify = true;
+      //     break;
+      //   }
+      // }
+      try {
+        final credential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+        print(credential.user!.displayName);
+        // SharedPreferences prefs = await SharedPreferences.getInstance();
+        // prefs.setBool('loggedIn', true);
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (c) {
+            return const CoffeeLayout();
+          },
         ));
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        AwesomeDialog(
-            context: context,
-            dialogType: DialogType.info,
-            animType: AnimType.rightSlide,
-            title: 'Error',
-            body: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Wrong password provided for that user.'),
-            ))
-          ..show();
-        print('Wrong password provided for that user.');
+      } on FirebaseAuthException catch (e) {
+        print(e.code);
+        if (e.code == 'user-not-found') {
+          print('not ok');
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: const Text("User not found"),
+            backgroundColor: Theme.of(context).errorColor.withOpacity(0.5),
+          ));
+          print('No user found for that email.');
+        } else if (e.code == 'wrong-password') {
+          AwesomeDialog(
+              context: context,
+              dialogType: DialogType.info,
+              animType: AnimType.rightSlide,
+              title: 'Error',
+              body: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('Wrong password provided for that user.'),
+              ))
+            ..show();
+          print('Wrong password provided for that user.');
+        }
       }
     }
   }

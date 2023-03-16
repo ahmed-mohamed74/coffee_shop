@@ -51,6 +51,7 @@ dependencies:
   flutter_zoom_drawer: ^3.0.4+1
   curved_navigation_bar: ^1.0.3
   introduction_screen:
+  google_fonts: ^4.0.3
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +63,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.12.0"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/new/app_icon.png"
+  min_sdk_android: 21
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

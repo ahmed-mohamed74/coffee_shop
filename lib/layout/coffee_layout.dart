@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CoffeeLayout extends StatelessWidget {
   const CoffeeLayout({Key? key}) : super(key: key);
@@ -94,56 +95,7 @@ class CoffeeLayout extends StatelessWidget {
                 ),
               ),
               mainScreen: Scaffold(
-                appBar: AppBar(
-                  backgroundColor: mainColor,
-                  elevation: 0,
-                  leading: Builder(
-                    builder: (BuildContext context) {
-                      return IconButton(
-                        icon: Image.asset(
-                          "assets/images/new/manu.png",
-                          height: 50,
-                          width: 70,
-                        ),
-                        // const Icon(
-                        //   Icons.menu_outlined,
-                        //   color: Colors.black,
-                        //   size: 35, // Changing Drawer Icon Size
-                        // ),
-                        onPressed: () {
-                          // Scaffold.of(context).openDrawer();
-                          ZoomDrawer.of(context)!.toggle();
-                        },
-                        // tooltip: MaterialLocalizations.of(context)
-                        //     .openAppDrawerTooltip,
-                      );
-                    },
-                  ),
-                  actions: [
-                    OpenContainer(
-                      openColor: mainColor,
-                      closedColor: mainColor,
-                      middleColor: mainColor,
-                      transitionDuration: const Duration(milliseconds: 1500),
-                      // transitionType: transitionType,
-                      closedBuilder:
-                          (BuildContext context, VoidCallback openContainer) =>
-                              InkWell(
-                        onTap: openContainer,
-                        child: const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Icon(
-                            Icons.shopping_basket,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      openBuilder: (BuildContext context,
-                              void Function({Object? returnValue}) action) =>
-                          const CartScreen(),
-                    ),
-                  ],
-                ),
+                appBar: buildAppBar(),
                 body: cubit.screens[cubit.currentIndex],
                 bottomNavigationBar: CurvedNavigationBar(
                   // elevation: 3,

@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           )),
       debugShowCheckedModeBanner: false,
       // home: RegisterScreen(),
-      home: OnBoardingScreen(isLogin),
+      home: isLogin ? const CoffeeLayout():OnBoardingScreen(isLogin),
       // isLogin ? const CoffeeLayout():LoginPage(),
     );
   }

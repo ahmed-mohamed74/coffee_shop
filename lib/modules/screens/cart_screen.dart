@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:coffee_shop/shared/network/users.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../cubit/cubit.dart';
 import '../../cubit/states.dart';
@@ -20,46 +21,104 @@ class _CartScreenState extends State<CartScreen> {
     if (cart.isEmpty) {
       return Scaffold(
         appBar: AppBar(
+          title: Text.rich(
+            TextSpan(
+                text: 'Coffee',
+                style: GoogleFonts.playfairDisplay(
+                  textStyle: TextStyle(
+                      color: blackColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22),
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: 'house',
+                    style: TextStyle(
+                        color: subColor,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 22),
+                  )
+                ]),
+          ),
+          centerTitle: true,
           backgroundColor: mainColor,
           foregroundColor: Colors.black,
           elevation: 0,
         ),
         body: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 35.0, top: 20, bottom: 15),
-                child: Text(
-                  'My Cart',
-                  style: TextStyle(
-                      color: subColor,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 1),
-                ),
-              ),
+              SizedBox(height: 170,),
               Flexible(
-                flex: 5,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/new/empty-cart.png',
-                        width: 150,
-                        height: 150,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Your Cart is Empty!!',
-                          style: TextStyle(color: subColor,fontSize: 20),
+                flex: 4,
+                child: Stack(children: [
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            mainColor.withOpacity(1),
+                            mainColor.withOpacity(0.7),
+                            mainColor.withOpacity(1),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  Center(
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(15.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 10,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Cart Page',
+                                style: TextStyle(
+                                  fontSize: 28.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: subColor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Icon(
+                                Icons.remove_shopping_cart,
+                                color: mainColor,
+                                size: 100.0,
+                              ),
+                              SizedBox(
+                                height: 20.0,
+                              ),
+                              Text(
+                                'Your Cart is Empty!!',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: subColor.withOpacity(0.7),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ]),
               ),
               Expanded(
                 flex: 1,
@@ -170,8 +229,28 @@ class _CartScreenState extends State<CartScreen> {
             var cubit = AppCubit.get(context);
             return Scaffold(
               appBar: AppBar(
+                title: Text.rich(
+                  TextSpan(
+                      text: 'Coffee',
+                      style: GoogleFonts.playfairDisplay(
+                        textStyle: TextStyle(
+                            color: blackColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22),
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'house',
+                          style: TextStyle(
+                              color: subColor,
+                              fontWeight: FontWeight.w300,
+                              fontSize: 22),
+                        )
+                      ]),
+                ),
+                centerTitle: true,
                 backgroundColor: mainColor,
-                foregroundColor: blackColor,
+                foregroundColor: Colors.black,
                 elevation: 0,
               ),
               body: SafeArea(
