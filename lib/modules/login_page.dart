@@ -31,32 +31,34 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: mainColor,
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: mainColor,
         toolbarHeight: 300,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              // image: AssetImage('assets/images/appbar1.jpg'),
-              image: AssetImage('assets/images/new/on_board1.jpg'),
-              // => https://i.pinimg.com/564x/61/3d/c9/613dc915419a18f33c0dddd5ac73140a.jpg
-              fit: BoxFit.cover,
+        flexibleSpace: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'assets/images/new/on_board1.jpg',
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 18),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Center(
+            Container(
+              decoration: BoxDecoration(
+                color: mainColor.withOpacity(0.3),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
                   child: Text.rich(
                     TextSpan(
                         text: _isLogin ? 'Welcome ' : 'Register ',
                         style: GoogleFonts.playfairDisplay(
                           textStyle: TextStyle(
-                              color: subColor,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 26),
                         ),
@@ -65,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                             text: _isLogin ? 'back!' : 'now!!',
                             style: GoogleFonts.playfairDisplay(
                               textStyle: TextStyle(
-                                  color: subColor,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 24),
                             ),
@@ -73,7 +75,19 @@ class _LoginPageState extends State<LoginPage> {
                         ]),
                   ),
                 ),
-                const SizedBox(height: 20),
+              ),
+            ),
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 18,left: 5),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -381,3 +395,19 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 }
+// AppBar(
+// elevation: 0,
+// toolbarHeight: 300,
+// flexibleSpace: PreferredSize(
+// preferredSize: Size.fromHeight(120.0),
+// child: Container(
+// decoration: const BoxDecoration(
+// image: DecorationImage(
+// // image: AssetImage('assets/images/appbar1.jpg'),
+// image: AssetImage('assets/images/new/on_board1.jpg'),
+// fit: BoxFit.cover,
+// ),
+// ),
+// ),
+// ),
+// ),
