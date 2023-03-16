@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import 'layout/coffee_layout.dart';
 import 'modules/login_page.dart';
+import 'modules/onBoardingScreen/on_boarding_screen.dart';
 
 bool isLogin = false;
 
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
           )),
       debugShowCheckedModeBanner: false,
       // home: RegisterScreen(),
-      home: isLogin ? const CoffeeLayout():LoginPage(),
+      home: OnBoardingScreen(isLogin),
+      // isLogin ? const CoffeeLayout():LoginPage(),
     );
   }
 }

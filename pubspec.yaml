@@ -50,6 +50,7 @@ dependencies:
   animations: ^2.0.7
   flutter_zoom_drawer: ^3.0.4+1
   curved_navigation_bar: ^1.0.3
+  introduction_screen:
 
 dev_dependencies:
   flutter_test:

@@ -35,8 +35,7 @@ class _LoginPageState extends State<LoginPage> {
           decoration: const BoxDecoration(
             image: DecorationImage(
               // image: AssetImage('assets/images/appbar1.jpg'),
-              image: NetworkImage(
-                  'https://i.pinimg.com/564x/ca/bc/68/cabc68004b8378db7587057607655e44.jpg'),
+              image: AssetImage('assets/images/new/login_image.jpg'),
               // => https://i.pinimg.com/564x/61/3d/c9/613dc915419a18f33c0dddd5ac73140a.jpg
               fit: BoxFit.cover,
             ),
@@ -80,8 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                         Icons.email_outlined,
                         color: subColor,
                       ),
-                      labelStyle:
-                          TextStyle(color: subColor),
+                      labelStyle: TextStyle(color: subColor),
                       labelText: 'Email',
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -128,8 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.person,
                           color: subColor,
                         ),
-                        labelStyle:
-                            TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: subColor),
                         labelText: 'Username',
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15.0),
@@ -173,8 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                         Icons.key,
                         color: subColor,
                       ),
-                      labelStyle:
-                          TextStyle(color: subColor),
+                      labelStyle: TextStyle(color: subColor),
                       labelText: 'Password',
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -256,7 +252,7 @@ class _LoginPageState extends State<LoginPage> {
                               )),
                           child: Text(
                             _isLogin ? 'Sign In' : 'Sign Up',
-                            style: TextStyle(fontSize: 20,color: mainColor),
+                            style: TextStyle(fontSize: 20, color: mainColor),
                           ),
                         ),
                       ),
